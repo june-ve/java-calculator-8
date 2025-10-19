@@ -19,12 +19,27 @@ public class NumberParser {
         int[] numbers = new int[tokens.length];
 
         for (int i = 0; i < tokens.length; i++) {
-            int number = Integer.parseInt(tokens[i]);
+            int number = parseSingleNumber(tokens[i]);
             validateNonNegative(number);
             numbers[i] = number;
         }
 
         return numbers;
+    }
+
+    /**
+     * 문자열 토큰을 정수로 변환한다.
+     *
+     * @param token 변환할 문자열 토큰
+     * @return 변환된 정수 값
+     * @throws IllegalArgumentException 숫자로 변환할 수 없는 경우
+     */
+    private int parseSingleNumber(String token) {
+        try {
+            return Integer.parseInt(token);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("유효하지 않은 숫자입니다: " + token);
+        }
     }
 
     /**
@@ -38,5 +53,4 @@ public class NumberParser {
             throw new IllegalArgumentException("음수는 허용되지 않습니다: " + number);
         }
     }
-
 }
