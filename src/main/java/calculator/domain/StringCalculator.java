@@ -26,7 +26,7 @@ public class StringCalculator {
         }
 
         String[] tokens = delimiterProcessor.splitByDelimiters(input);
-        int[] numbers = numberParser.parseToNumbers(tokens);
+        int[] numbers = numberParser.parseNumbers(tokens);
 
         return sum(numbers);
     }

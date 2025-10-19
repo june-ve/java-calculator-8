@@ -15,7 +15,7 @@ public class NumberParser {
      * @return 변환된 정수 배열
      * @throws IllegalArgumentException 숫자가 아닌 값 또는 음수가 포함된 경우
      */
-    int[] parseToNumbers(String[] tokens) {
+    int[] parseNumbers(String[] tokens) {
         int[] numbers = new int[tokens.length];
 
         for (int i = 0; i < tokens.length; i++) {
