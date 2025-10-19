@@ -21,7 +21,9 @@ public class StringCalculator {
      * @return 계산된 합계
      */
     public int add(String input) {
-        // TODO: 빈 문자열("") 입력 시 0 반환
+        if (input == null || input.isEmpty()) {
+            return 0;
+        }
 
         String[] tokens = delimiterProcessor.splitByDelimiters(input);
         int[] numbers = numberParser.parseToNumbers(tokens);
