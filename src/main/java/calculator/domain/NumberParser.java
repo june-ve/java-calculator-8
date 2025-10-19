@@ -13,17 +13,30 @@ public class NumberParser {
      *
      * @param tokens 숫자 문자열 배열
      * @return 변환된 정수 배열
-     * @throws IllegalArgumentException 숫자가 아닌 값이 포함된 경우
+     * @throws IllegalArgumentException 숫자가 아닌 값 또는 음수가 포함된 경우
      */
     int[] parseToNumbers(String[] tokens) {
         int[] numbers = new int[tokens.length];
 
         for (int i = 0; i < tokens.length; i++) {
-            // TODO: 음수 값이 들어온 경우 IllegalArgumentException 발생 처리
-            numbers[i] = Integer.parseInt(tokens[i]);
+            int number = Integer.parseInt(tokens[i]);
+            validateNonNegative(number);
+            numbers[i] = number;
         }
 
         return numbers;
+    }
+
+    /**
+     * 음수 값이 존재하는 경우 예외를 발생시킨다.
+     *
+     * @param number 검증할 숫자
+     * @throws IllegalArgumentException 음수가 입력된 경우
+     */
+    private void validateNonNegative(int number) {
+        if (number < 0) {
+            throw new IllegalArgumentException("음수는 허용되지 않습니다: " + number);
+        }
     }
 
 }
