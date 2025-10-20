@@ -76,4 +76,35 @@ public class StringCalculatorTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    void 빈_토큰이_생기는_경우_예외_발생() {
+        // given
+        String input = ":12:3,456,";
+
+        // when & then
+        assertThatThrownBy(() -> calculator.add(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 지정되지_않은_구분자_사용_시_예외_발생() {
+        // given
+        String input = "12#3#456";
+
+        // when & then
+        assertThatThrownBy(() -> calculator.add(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 복수의_커스텀_구분자로_숫자_합산() {
+        // given
+        String input = "//?*,\\n12,3?456*7";
+
+        // when
+        int result = calculator.add(input);
+
+        // then
+        assertThat(result).isEqualTo(478);
+    }
 }
